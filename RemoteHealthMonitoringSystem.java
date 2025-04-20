@@ -10,7 +10,7 @@ public class RemoteHealthMonitoringSystem {
         try {
             System.out.println("Remote Patient Monitoring System");
 
-            // Emergency Alert System
+            // === Emergency Alert System ===
             System.out.println("\nEmergency Alert System");
             int heartRate = 0, bloodPressure = 0, temperature = 0;
 
@@ -26,7 +26,7 @@ public class RemoteHealthMonitoringSystem {
                     break;
                 } catch (InputMismatchException e) {
                     System.err.println("Error: Please enter a valid number.");
-                    scanner.nextLine();
+                    scanner.nextLine(); // Clear invalid input
                 }
             }
 
@@ -60,6 +60,8 @@ public class RemoteHealthMonitoringSystem {
                 }
             }
 
+            scanner.nextLine(); // Consume leftover newline
+
             EmergencyAlert alert = new EmergencyAlert(heartRate, bloodPressure, temperature);
             String doctorEmail;
             while (true) {
@@ -73,7 +75,7 @@ public class RemoteHealthMonitoringSystem {
             }
             alert.checkVitals(doctorEmail);
 
-            // Panic Button
+            // === Panic Button ===
             System.out.print("Do you want to press the panic button? (yes/no): ");
             String panic = scanner.nextLine().trim();
             if (panic.equalsIgnoreCase("yes")) {
@@ -91,7 +93,7 @@ public class RemoteHealthMonitoringSystem {
                 panicButton.press(emergencyEmail);
             }
 
-            // Chat & Video Consultation
+            // === Chat & Video Consultation ===
             System.out.println("\nChat & Video Consultation");
             String doctorUser;
             while (true) {
@@ -143,7 +145,7 @@ public class RemoteHealthMonitoringSystem {
             }
             patient.sendMessage(msgToDoctor, doctorUser);
 
-            // Video Call
+            // === Video Call ===
             System.out.print("Do you want to start a video call? (yes/no): ");
             String startCall = scanner.nextLine().trim();
             if (startCall.equalsIgnoreCase("yes")) {
@@ -173,7 +175,7 @@ public class RemoteHealthMonitoringSystem {
                 call.startCall(platform, link);
             }
 
-            // Notifications & Reminders
+            // === Notifications & Reminders ===
             System.out.println("\nNotifications & Reminders");
             ReminderService reminderService = new ReminderService();
 
@@ -206,7 +208,7 @@ public class RemoteHealthMonitoringSystem {
             e.printStackTrace();
         } finally {
             scanner.close();
-            System.out.println("\nProgram ended.");
+            System.out.println("\nProgram terminated.");
         }
     }
 }
